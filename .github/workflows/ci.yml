@@ -30,10 +30,9 @@ jobs:
         uses: equinor/radix-github-actions@master
         with:
           args: >
-            rx
             create job
             deploy
             -a edc2021-radix-app-from-external-ci
             --context playground
-            -e deploy-only-example
+            -e dev
             -f
