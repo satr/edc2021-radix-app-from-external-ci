@@ -1,0 +1,23 @@
+apiVersion: radix.equinor.com/v1
+kind: RadixApplication
+metadata:
+  name: edc2021-radix-app-from-external-ci
+spec:
+  environments:
+    - name: dev
+    - name: prod
+  components:
+    - name: server
+      image: ghcr.io/satr/edc2021-radix-app-from-external-ci:{imageTagName}
+      ports:
+        - name: http
+          port: 8000
+      environmentConfig:
+        - environment: dev
+          imageTagName: main-latest
+        - environment: prod
+          imageTagName: release-latest
+  privateImageHubs:
+    ghcr.io:
+      username: satr
+      email: satr@users.noreply.github.com
