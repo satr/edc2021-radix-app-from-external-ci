@@ -12,6 +12,7 @@ spec:
       ports:
         - name: http
           port: 8000
+      publicPort: http
       environmentConfig:
         - environment: dev
           imageTagName: main-latest
