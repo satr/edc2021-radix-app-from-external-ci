@@ -11,7 +11,7 @@ jobs:
     name: deploy
     runs-on: ubuntu-latest
     env:
-      APP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.K8S_CREDENTIALS }}}}
+      APP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.K8S_CREDENTIALS }}
     steps:
       - uses: actions/checkout@v1
       - name: Set default image tag
@@ -35,4 +35,5 @@ jobs:
             -a edc2021-radix-app-from-external-ci
             --context playground
             -e dev
+            --token-environment
             -f
