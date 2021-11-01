@@ -13,6 +13,7 @@ spec:
   components:
     - name: server
       image: ghcr.io/satr/edc2021-radix-app-from-external-ci:{imageTagName}
+      alwaysPullImageOnDeploy: true
       ports:
         - name: http
           port: 8000
