@@ -6,6 +6,9 @@ on:
       - main
       - release
 
+permissions:
+  id-token: write
+
 jobs:
   build:
     name: deploy
