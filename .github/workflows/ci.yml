@@ -31,12 +31,12 @@ jobs:
           echo "IMAGE_TAG=$(echo ${GITHUB_REF##*/}-latest)" >> $GITHUB_ENV
       - name: Build the Radix application
         run: |
-          echo test:$IMAGE_TAG
-#          docker build -t ghcr.io/satr/edc2021-radix-app-from-external-ci:$IMAGE_TAG ./app/
+          echo test:${IMAGE_TAG}
+#          docker build -t ghcr.io/satr/edc2021-radix-app-from-external-ci:${IMAGE_TAG} ./app/
 #      - name: Push the image to GitHub container registry
 #        run: |
 #          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u satr --password-stdin
-#          docker push ghcr.io/satr/edc2021-radix-app-from-external-ci:$IMAGE_TAG
+#          docker push ghcr.io/satr/edc2021-radix-app-from-external-ci:${IMAGE_TAG}
 #      - name: Get environment from branch
 #        id: getEnvironment
 #        uses: equinor/radix-github-actions@master
