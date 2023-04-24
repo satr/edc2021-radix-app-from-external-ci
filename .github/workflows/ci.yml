@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: 'Set default image tag'
         run: |
-          echo "IMAGE_TAG=$(echo \"${GITHUB_REF##*/}-latest\")" >> $GITHUB_ENV
+          echo "IMAGE_TAG=$(echo main-latest)" >> $GITHUB_ENV
       - name: Build the Radix application
         run: |
           docker build -t ghcr.io/satr/edc2021-radix-app-from-external-ci:${{ steps.prep.outputs.IMAGE_TAG }} ./app/
