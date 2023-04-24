@@ -27,6 +27,7 @@ jobs:
           echo "APP_SERVICE_ACCOUNT_TOKEN=$token" >> $GITHUB_ENV
       - uses: actions/checkout@v1
       - name: 'Set default image tag'
+        id: prep
         run: |
           echo "IMAGE_TAG=$(echo ${GITHUB_REF##*/}-latest)" >> $GITHUB_ENV
       - name: Build the Radix application
