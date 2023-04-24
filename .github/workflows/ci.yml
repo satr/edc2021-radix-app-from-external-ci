@@ -10,15 +10,22 @@ jobs:
   build:
     name: deploy
     runs-on: ubuntu-latest
-    env:
-      APP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.K8S_CREDENTIALS }}
     steps:
-      - uses: actions/checkout@v1
-      - name: Set default image tag
-        id: prep
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
+          client-id: 7ef841f8-a263-45ea-8993-683cc6817ae2
+          tenant-id: 3aa4a235-b6e2-48d5-9195-7fcf05b459b0
+          allow-no-subscriptions: true
+      - name: 'Get Azure principal token for Radix'
         run: |
-          branch=${GITHUB_REF##*/}
-          echo "::set-output name=IMAGE_TAG::${branch}-latest"
+          token=$(az account get-access-token --resource 6dae42f8-4368-4678-94ff-3960e28e3630 --query=accessToken -otsv)
+          echo "::add-mask::$token"
+          echo "APP_SERVICE_ACCOUNT_TOKEN=$token" >> $GITHUB_ENV
+      - uses: actions/checkout@v1
+      - name: 'Set default image tag'
+        run: |
+          echo ::set-env name=IMAGE_TAG::$(echo ${GITHUB_REF##*/}-latest)
       - name: Build the Radix application
         run: |
           docker build -t ghcr.io/satr/edc2021-radix-app-from-external-ci:${{ steps.prep.outputs.IMAGE_TAG }} ./app/
