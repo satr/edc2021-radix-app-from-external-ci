@@ -7,6 +7,7 @@ on:
       - release
 
 permissions:
+  packages: write
   id-token: write
 
 jobs:
