@@ -15,6 +15,3 @@ Example demonstrates deploy-only Radix option, building the application on exter
       email: user-email
 ```
 More information is available in the [Radix documentation](https://www.radix.equinor.com/), also particularly about [deploy-only](https://www.radix.equinor.com/guides/deploy-only).
-    
- 
- 
